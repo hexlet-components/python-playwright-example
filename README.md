@@ -1,34 +1,44 @@
-# python-playwright-example
+Настроенный проект с тестами на Playwright для Python к курсу [Playwright на Python](https://ru.hexlet.io/programs/python-playwright). Тесты проверяют учебное приложение Departures на стенде `https://http.hexlet.app/python-playwright`, на котором построены уроки курса. Проект собирает в одном месте решения из разных уроков, поэтому с ним удобно сверять свой проект в самостоятельных работах.
 
-[![CI](https://github.com/hexlet-components/python-playwright-example/actions/workflows/main.yml/badge.svg)](https://github.com/hexlet-components/python-playwright-example/actions/workflows/main.yml)
-[![Check](https://github.com/hexlet-components/python-playwright-example/actions/workflows/check.yml/badge.svg)](https://github.com/hexlet-components/python-playwright-example/actions/workflows/check.yml)
+## Свой репозиторий из шаблона
 
-Настроенный проект на [Playwright для Python](https://playwright.dev/python/) для курса [Playwright на Python](https://ru.hexlet.io/programs/python-playwright). Тесты проверяют учебное приложение Departures на стенде `https://http.hexlet.app/python-playwright`, тот же, на котором построены уроки. Студент сверяет с этим репозиторием свой проект в самостоятельных работах.
+Нажмите **Use this template → Create a new repository**. Выберите свой аккаунт GitHub и назовите репозиторий `python-playwright-example`. Создайте репозиторий и клонируйте его. В Settings → General → Features проверьте, что Issues включены. В Actions разрешите запуск workflows.
 
-Проект собирает решения из разных уроков курса в одном месте.
-
-- Тесты браузера лежат в `tests/e2e`, тесты API в `tests/api`. Вторые браузер не поднимают и ходят в API бронирований с токеном.
-- Page Object для входа и раздела поездок лежит в `tests/pages`.
-- Хуки в `tests/conftest.py` прикладывают к отчёту Allure скриншот, видео и трейс упавшего теста.
-- `pytest.ini` включает трейсы и видео для упавших тестов и задаёт шаблон ссылок `@allure.issue` на Issues репозитория.
-- CI в `.github/workflows/main.yml` прогоняет тесты и сохраняет сырые данные Allure и трейсы артефактами.
+Баги, найденные тестами, заводите в Issues своего репозитория. Чтобы отчёт Allure вёл туда, замените в _pytest.ini_ `hexlet-components` своим логином в шаблоне `--allure-link-pattern`. После этого номер в `@allure.issue("1")` превращается в ссылку на первый issue вашего репозитория.
 
 ## Запуск
 
+Потребуются [mise](https://mise.jdx.dev/) и `make`. Python, uv и браузер mise ставит сам.
+
 ```sh
-mise run setup
-mise run test
-mise run report-allure
+mise install
+make setup
+make test
 ```
 
-`make <задача>` вызывает ту же задачу mise. Отчёт Allure собирает утилита `allure`, она ставится отдельно, см. [документацию Allure](https://allurereport.org/docs/v2/install/).
+Тесты ходят на стенд в интернете, своё приложение поднимать не нужно. Упавший тест оставляет в каталоге _test-results/_ трейс и видео. Трейс открывается командой `uv run playwright show-trace <путь к trace.zip>`.
 
-## Проверки
+Отчёт Allure собирается из каталога _allure-results/_. Утилита `allure` ставится отдельно по [инструкции Allure](https://allurereport.org/docs/v2/install/).
 
-`mise run check` гоняет тот же набор, что CI: разметку, опечатки, ссылки, workflows, ruff, ty и уязвимости зависимостей.
+```sh
+make report-allure
+```
 
----
+## Что где лежит
 
-[![Hexlet Ltd. logo](https://raw.githubusercontent.com/Hexlet/assets/master/images/hexlet_logo128.png)](https://hexlet.io/?utm_source=github&utm_medium=link&utm_campaign=python-playwright-example)
+| Путь | Содержимое |
+| --- | --- |
+| tests/e2e | Тесты через браузер: вход, ошибки входа, табло и подмена его API |
+| tests/api | Тесты API бронирований с токеном, браузер не поднимается |
+| tests/pages | Page Object страницы входа и раздела поездок |
+| tests/conftest.py | Хуки, которые прикладывают к отчёту Allure скриншот, видео и трейс упавшего теста |
+| pytest.ini | Трейсы и видео упавших тестов, каталог данных Allure, шаблон ссылок на Issues |
+| .github/workflows/main.yml | Прогон тестов в CI, данные Allure и трейсы сохраняются артефактами |
 
-This repository is created and maintained by the team and the community of Hexlet, an educational project. [Read more about Hexlet](https://hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=python-playwright-example).
+## Проверки и разработка
+
+`make check` гоняет тот же набор, что CI: ruff, ty, разметку, опечатки, ссылки, workflows и уязвимости зависимостей. `make fix` применяет автоисправления.
+
+## Лицензия
+
+MIT.
