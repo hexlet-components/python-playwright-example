@@ -11,9 +11,10 @@ def api(playwright: Playwright) -> Generator[APIRequestContext, None, None]:
     anonymous = playwright.request.new_context(
         base_url="https://http.hexlet.app/python-playwright/"
     )
-    token = anonymous.post(
-        "api/login", data={"username": "passenger", "password": "flight123"}
-    ).json()["token"]
+    # Учётка стенда напечатана на его странице входа и в уроках.
+    password = "flight123"  # betterleaks:allow
+    credentials = {"username": "passenger", "password": password}
+    token = anonymous.post("api/login", data=credentials).json()["token"]
     anonymous.dispose()
 
     context = playwright.request.new_context(

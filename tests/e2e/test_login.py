@@ -15,7 +15,8 @@ def test_login_passenger(page: Page) -> None:
     with allure.step("Открыть страницу входа"):
         login_page.open()
     with allure.step("Войти пассажиром"):
-        trips_page = login_page.login("passenger", "flight123")
+        # Учётка стенда напечатана на его странице входа и в уроках.
+        trips_page = login_page.login("passenger", "flight123")  # betterleaks:allow
     with allure.step("Проверить раздел поездок"):
         trips_page.expect_opened()
         trips_page.expect_trip("SK 204")
