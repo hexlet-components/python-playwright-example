@@ -14,8 +14,14 @@ uv = "latest"
 
 # Задачи проекта живут здесь, Makefile только проксирует make <задача> в mise run.
 [tasks.setup]
-description = "Поставить зависимости, браузер и git-хуки"
-run = ["uv sync", "uv run playwright install --with-deps chromium", "hk install"]
+description = "Поставить зависимости и git-хуки"
+run = ["uv sync", "hk install"]
+
+# Браузер ставится отдельной задачей: линтерам в check.yml он не нужен, а
+# --with-deps тянет системные пакеты через apt.
+[tasks.install-browsers]
+description = "Поставить Chromium для Playwright с системными зависимостями"
+run = "uv run playwright install --with-deps chromium"
 
 [tasks.test]
 description = "Тесты против стенда http.hexlet.app/python-playwright"

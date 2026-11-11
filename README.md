@@ -8,11 +8,12 @@
 
 ## Запуск
 
-Потребуются [mise](https://mise.jdx.dev/) и `make`. Python, uv и браузер mise ставит сам.
+Потребуются [mise](https://mise.jdx.dev/) и `make`. Python и uv ставит mise, браузер ставится отдельной командой.
 
 ```sh
 mise install
 make setup
+make install-browsers
 make test
 ```
 
