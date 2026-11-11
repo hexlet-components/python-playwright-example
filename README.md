@@ -1,3 +1,21 @@
+<div align="center">
+
+<a href="https://hexlet.io/?utm_source=github&utm_medium=link&utm_campaign=python-playwright-example">
+    <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Hexlet/brand-assets/master/images/svg/hexlet_wordmark_white_rus.svg">
+        <img src="https://raw.githubusercontent.com/Hexlet/brand-assets/master/images/svg/hexlet_wordmark_primary_rus.svg" alt="Хекслет" height="64">
+    </picture>
+</a>
+
+# Тесты на Playwright для Python
+
+[![CI](https://github.com/hexlet-components/python-playwright-example/actions/workflows/main.yml/badge.svg)](https://github.com/hexlet-components/python-playwright-example/actions/workflows/main.yml)
+[![Check](https://github.com/hexlet-components/python-playwright-example/actions/workflows/check.yml/badge.svg)](https://github.com/hexlet-components/python-playwright-example/actions/workflows/check.yml)
+
+</div>
+
+Проект создаёт и поддерживает команда [Хекслета](https://hexlet.io/?utm_source=github&utm_medium=link&utm_campaign=python-playwright-example), образовательного проекта.
+
 Настроенный проект с тестами на Playwright для Python к курсу [Playwright на Python](https://ru.hexlet.io/programs/python-playwright). Тесты проверяют учебное приложение Departures на стенде `https://http.hexlet.app/python-playwright`, на котором построены уроки курса. Проект собирает в одном месте решения из разных уроков, поэтому с ним удобно сверять свой проект в самостоятельных работах.
 
 ## Свой репозиторий из шаблона
