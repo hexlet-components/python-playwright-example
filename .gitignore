@@ -1,2 +1,8 @@
 
 .lycheecache
+.venv
+__pycache__
+*_cache/
+allure-results/
+allure-report/
+test-results/

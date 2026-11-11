@@ -1,0 +1,19 @@
+[project]
+name = "python-playwright-example"
+version = "0.1.0"
+description = "Playwright for Python tests examples"
+readme = "README.md"
+requires-python = ">=3.14"
+
+[dependency-groups]
+dev = [
+    "allure-pytest>=2.16.2",
+    "pytest>=9.1.1",
+    "pytest-playwright>=0.7.2",
+    "ruff>=0.16.2",
+    "ty>=0.0.1",
+]
+
+# Это набор тестов, а не пакет: устанавливать нечего.
+[tool.uv]
+package = false

@@ -1,16 +1,13 @@
 # AGENTS.md
 
-Репозиторий создан из шаблона `hexlet-components/component-template`. Шаблон ставит общий слой проверок из [dev-quality-gates](https://github.com/mokevnin/dev-quality-gates): mise, hk, commitlint, rumdl, typos, lychee, jactionlint и betterleaks. Проверки под стек репозитория шаблон не знает, их добавляет первая настройка.
+Репозиторий создан из шаблона `hexlet-components/component-template`. Шаблон ставит общий слой проверок из [dev-quality-gates](https://github.com/mokevnin/dev-quality-gates): mise, hk, commitlint, rumdl, typos, lychee, jactionlint и betterleaks. Стек здесь Python с uv, ruff и ty.
 
-## Первая настройка
+## Тесты повторяют уроки курса
 
-Пока этот раздел в файле, репозиторий не настроен. Задача `test` падает, и CI красный.
+Компонент служит образцом проекта для курса «Playwright на Python» (`courses/ru/python_playwright_course` в hexlet-exercise-kit). Page Object, хуки Allure в `tests/conftest.py`, моки табло и API бронирований взяты из уроков почти дословно. Правка кода здесь расходится с уроком, поэтому меняется в паре с курсом.
 
-1. Определи стек по задаче компонента.
-2. Пройди [adopt.md](https://raw.githubusercontent.com/mokevnin/dev-quality-gates/main/docs/adopt.md) для этого стека. Общий слой уже стоит, его не трогай. Новые инструменты закрепляются в `mise.toml`, линтеры и форматтеры стека становятся шагами `hk.pkl`, и их запускает `mise run check`. OSV-Scanner добавляется вместе с первым lock-файлом.
-3. Фронтенд берёт CSS по `docs/css-frameworks-migration.md` из hexlet-exercise-kit. С React это Vite и Mantine, без React последний Tailwind.
-4. Задачи проекта живут в `mise.toml`, а `Makefile` только проксирует `make <задача>` в `mise run <задача>`. Поставь установку зависимостей стека в `setup` перед `hk install` и заполни `test`. Компонент с публикацией получает выкладку в `.github/workflows/main.yml`, actions в ней закрепляются по SHA.
-5. Добавь экосистему пакетов стека в `.github/dependabot.yml`.
-6. Доведи `README.md` по его заготовке. Замени `component-template` именем репозитория, в том числе в бейджах и `utm_campaign`, опиши компонент и для какого курса, проекта или программы он нужен, удали цитату про шаблон. Блок про Хекслет внизу остаётся.
+Тесты ходят на стенд `https://http.hexlet.app/python-playwright` из репозитория `hexlet-components/http-example`. Стенд свой, набор данных на нём не меняется, поэтому тесты гоняются и в CI. Падение теста здесь означает, что разошлись стенд и урок.
 
-Настройка закончена, когда `mise run setup`, `mise run check` и `mise run test` проходят, каждый новый шаг проверки один раз упал на подложенном нарушении, а этот раздел удалён из файла.
+## Ссылки Allure
+
+`pytest.ini` задаёт шаблон `--allure-link-pattern` на Issues этого репозитория. В самих тестах `@allure.issue` нет: студент в самостоятельной работе заводит баг в своём репозитории и ставит его номер сам.

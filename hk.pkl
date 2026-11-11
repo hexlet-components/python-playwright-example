@@ -6,12 +6,30 @@ import "package://github.com/jdx/hk/releases/download/v2.8.1/hk@2.8.1#/Builtins.
 // Быстрые проверки идут на каждый коммит. Сеть и долгие шаги вынесены в all:
 // их гоняют check, pre-push и CI.
 local fast = new Mapping<String, Step> {
+  ["ruff-format"] {
+    glob = List("**/*.py")
+    check = "uv run ruff format --force-exclude --check {{files}}"
+    fix = "uv run ruff format --force-exclude {{files}}"
+  }
+  ["ruff"] {
+    glob = List("**/*.py")
+    check = "uv run ruff check --force-exclude {{files}}"
+    fix = "uv run ruff check --force-exclude --fix {{files}}"
+  }
   ["rumdl"] = Builtins.rumdl
   ["typos"] = Builtins.typos
   ["jactionlint"] = Builtins.jactionlint
 }
 
 local all = (fast) {
+  ["ty"] {
+    glob = List("**/*.py")
+    check = "uv run ty check"
+  }
+  ["osv-scanner"] {
+    glob = List("uv.lock")
+    check = "osv-scanner scan source --lockfile uv.lock"
+  }
   ["lychee"] {
     glob = List("**/*.md")
     check = "lychee --config lychee.toml --no-progress {{files}}"
